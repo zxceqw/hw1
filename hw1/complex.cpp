@@ -105,7 +105,7 @@ void Complex::amount(Complex n1)
 		string str;
 		while (!fin.eof())
 		{
-			cout << "s" << endl;
+			cout << "" << endl;
 		}
 	}
 	fin.close();
