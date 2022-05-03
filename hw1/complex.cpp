@@ -1,7 +1,16 @@
-#include "Complex.h"
+#include "complex.h"
 #include <iostream>
 #include "fstream"
+#include <string>
+#include <vector>
 using namespace std;
+
+
+Complex Complex::Ccreate(double re, double im)
+{
+	Complex result = { re, im };
+	return result;
+}
 
 void Complex::sum(Complex n1)
 {
@@ -65,7 +74,6 @@ void Complex::mult(Complex n1)
 
 void Complex::div(Complex n1)
 {
-	//this->re = b(real); this->im = b(imaginary); n1.re = a(real); n1.im = a(imaginary)
 	if (n1.re * this->re + n1.im * this->im == 0)
 	{
 		cout << (this->re * n1.im - n1.re * this->im) / (this->re * this->re + this->im * this->im) << "i" << endl;
@@ -84,31 +92,30 @@ void Complex::div(Complex n1)
 	}
 }
 
-void Complex::abs(Complex n1)
-{
-}
 
 void Complex::amount(Complex n1)
 {
 	setlocale(LC_ALL, "ru");
-	int p;
+	int n = 0;
+	vector <Complex> p;
+	string str;
+	//Complex* p[] = new Complex[n];
 	string path = "complex.txt";
 	ifstream fin;
-	fin.open(path, ifstream::app);
+	fin.open(path);
 	if (!fin.is_open())
 	{
 		cout << "Ошибка при открытии файла" << endl;
 	}
 	else
 	{
-		cout << "Файл открыт!" << endl;
-		string str;
+		cout << "Файл открыт" << endl;
 		while (!fin.eof())
 		{
-			cout << "" << endl;
+			getline(fin, str);
+			n++;
 		}
+		cout << n << " - количество комплексных чисел в файле" << endl;
+		fin.close();
 	}
-	fin.close();
 }
-
-
