@@ -88,34 +88,20 @@ void Complex::div(Complex n1)
 	}
 	else
 	{
-		cout << (n1.re * this->re + n1.im * this->im) / (this->re * this->re + this->im * this->im) << "" << (this->re * n1.im - n1.re * this->im) / (this->re * this->re + this->im * this->im) << "i" << endl << endl << endl;
+		cout << (n1.re * this->re + n1.im * this->im) / (this->re * this->re + this->im * this->im) << "" << (this->re * n1.im - n1.re * this->im) / (this->re * this->re + this->im * this->im) << "i" << endl;
 	}
 }
 
-
-void Complex::amount(Complex n1)
+double Complex::mod()
 {
-	setlocale(LC_ALL, "ru");
-	int n = 0;
-	vector <Complex> p;
-	string str;
-	//Complex* p[] = new Complex[n];
-	string path = "complex.txt";
-	ifstream fin;
-	fin.open(path);
-	if (!fin.is_open())
-	{
-		cout << "Ошибка при открытии файла" << endl;
-	}
-	else
-	{
-		cout << "Файл открыт" << endl;
-		while (!fin.eof())
-		{
-			getline(fin, str);
-			n++;
-		}
-		cout << n << " - количество комплексных чисел в файле" << endl;
-		fin.close();
-	}
+	return sqrt(this->re * this->re + this->im * this->im);
 }
+
+bool Complex::compare(Complex n1)
+{
+	if (this->mod() > n1.mod()) return true;
+	else return false;
+}
+
+
+

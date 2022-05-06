@@ -9,7 +9,8 @@ struct Complex
 	void min(Complex n1);
 	void mult(Complex n1);
 	void div(Complex n1);
-	void amount(Complex n1);
+	double mod();
+	bool compare(Complex n1);
 };
 
 

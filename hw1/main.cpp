@@ -1,15 +1,39 @@
 #include <iostream>
 #include "Complex.h"
+#include <fstream>
+#include <string>
+
 
 int main() {
-	setlocale(LC_ALL, "ru");
 	Complex a{ 3 , 2 };
 	Complex b{ 1 , 1 };
-	cout << "1.1 Выведем на экран сумму, разность, произведение и частное комплексных чисел соответственно:" << endl;
+	cout << "1.1" << endl;
 	a.sum(b);
 	a.min(b);
 	a.mult(b);
 	b.div(a);
-	cout << endl << "1.2 Выведем на экран количество комплексных чисел и максимальное по модулю комплексное число из текстового файла: " << endl;
-	a.amount(b);
+	cout << "____________________________" << endl << "1.2" << endl;
+	string path = ("complex.txt");
+	string str;
+	fstream f;
+	f.open(path);
+	int n = 0;
+	while (!f.eof())
+	{
+		getline(f, str);
+		n++;
+	}
+	cout << n << " - amount of complex numbers" << endl;
+
+	Complex* arr = new Complex[n];
+	double max = 0;
+	for (int i = 0; i < n; i++)
+	{
+		Complex a;
+		f >> a.re;
+		f >> a.im;
+		arr[i] = a;
+		if (arr[i].mod() > max) max = arr[i].mod();
+	}
+	cout << max;
 }
